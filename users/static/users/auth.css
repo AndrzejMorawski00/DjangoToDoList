@@ -1,0 +1,59 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.messages {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 0;
+    margin: 5rem 0;
+    color: white;
+    
+}
+
+.messages__paragraph {
+    font-size: 2rem;
+    color: white;
+}
+
+.auth {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.auth__label {
+    font-size: 3rem;
+    color: white; 
+}
+.auth__input {
+    font-size: 3rem;
+    color: white;
+    background-color: rgba(0,0,0, 0.3);
+    border: 3px solid white;
+    border-radius: 12px;
+    padding: 0.5rem 1rem;
+
+}
+.auth__submit {
+    margin-top: 2rem;
+    font-size: 3.5rem;
+    padding: 0.7rem 2rem;
+    color: white;
+    background-color: rgba(0, 0, 0, 0);
+    border: 3px solid white;
+    border-radius: 12px;
+    letter-spacing: 1px;
+    transition: 0.2s;
+}
+
+.auth__submit:hover {
+    transform: scale(1.03);
+}
+

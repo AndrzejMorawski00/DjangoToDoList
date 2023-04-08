@@ -1,0 +1,46 @@
+{% extends 'base.html' %} 
+{%load static %}
+
+{%block styles %}
+<link rel="stylesheet" href="{% static 'todo/todo.css' %}">
+{% endblock %}
+{% block wrapper_class %}{% if user.is_authenticated %}wrapper__top"{% else %}wrapper__center"{% endif %} 
+{% endblock %}
+{% block header %} 
+    {% if user.is_authenticated %}
+    <div class="header">
+        <p class="header__link header__paragraph" >Hi {{user.username}}</p>
+        <a class="header__link" href="{% url 'users:logout-user' %}">Logout</a>
+    </div>
+    {% else %}
+    <div class="header__center">    
+        <a class="header__link" href="{% url 'users:login-user' %}">Login</a>
+        <a class="header__link" href="{% url 'users:register-user' %}">Register</a>
+    </div>
+    {% endif %} 
+{% endblock %}
+
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <div class="todo__header">
+            <a href="{% url 'todo:add-new' %}"><button class="todo__button">Add new ToDo</button></a>
+        </div>
+        <div class="todo__box">
+            <p class="todo__paragraph todo__counter">Tasks left: {{tasks_left}}</p>
+            
+            <div class="todo__sorts">
+                <a href="{% url 'todo:sort-tasks' 'important' %}"><button class="todo__button">Sort by important</button></a>
+                <a href="{% url 'todo:sort-tasks' 'done' %}"><button class="todo__button">Sort by done</button></a>
+                <a href="{% url 'todo:sort-tasks' 'deadline' %}"><button class="todo__button">Sort by deadline</button></a>
+            </div>
+            {% if tasks %}
+            <ul class="todo__list">
+                {% for task in tasks %}
+                    {% include "todo/includes/single-todo.html" %}
+                {% endfor%}
+            </ul>
+            {% endif %}
+        </div>
+    {% endif %}
+{% endblock %}

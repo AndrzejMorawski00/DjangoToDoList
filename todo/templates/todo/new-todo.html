@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+{%block styles %}
+<link rel="stylesheet" href="{% static 'todo/new-todo.css' %}">
+
+{% endblock %}
+
+{% block title %}
+    Add Task
+{% endblock %}
+
+{% block header %}
+    <div class="header">
+        <a class="header__link" href="{% url 'todo:home-view' %}">Home</a>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <form class="form" method="POST">
+        {% csrf_token %}
+        <label class="form__label" for="task_name">Task name:</label>
+        <input class="form__input" type="text" maxlenght=50 required name="task_name" id="task_name">
+
+        <label class="form__label" for="task_details">Task details:</label>
+        <textarea class="form__input" maxlength="200" rows="4" name="task_details" id="task_details"></textarea>
+
+        <label class="form__label" for="task_important">Is important?</label>
+        <input class="form__input form__checkbox" type="checkbox"  name="task_important" id="task_important">
+
+        <label class="form__label" for="task_deadline">Task deadline:</label>
+        <input class="form__input" type="date" name="task_deadline" id="task_deadline">
+        <input class="from__submit" type="submit" value="Add task">
+    </form>
+{% endblock %}

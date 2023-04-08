@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{%load static %}
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'users/auth.css' %}">
+{% endblock %}
+{% block header %}
+<div class="header">
+    <a class="header__link" href="{% url 'todo:home-view' %}">Home</a>
+    <a class="header__link" href="{% url 'users:login-user' %}">Login Here</a>
+</div>
+{% endblock%}
+
+{% block content %}
+<ul class="messages">
+    {% if errors %}
+        {% for error in errors %}
+        <li class="messages__paragraph" >{{error}}</li>
+        {% endfor %}
+    {% endif %}
+</ul>
+<form class="auth" method="POST">
+    {% csrf_token %}
+
+    <label class="auth__label" for="id_username">Username:</label>
+    {{register_form.username}}
+    <label class="auth__label" for="id_password1">Password:</label>
+    {{register_form.password1}}
+    <label class="auth__label" for="id_password2">Repeat Password:</label>
+    {{register_form.password2}}
+    
+    <input class="auth__submit" type="submit" value="Register">
+</form>
+{% endblock %}

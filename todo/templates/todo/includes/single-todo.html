@@ -1,0 +1,18 @@
+
+<li class="todo {% if task.task_important%}todo__important{%endif%} {% if task.task_done%}todo__done{%endif%}">
+        <p class="todo__paragraph">{{task.task_name}}</p>
+        {% if task.task_deadline != None%}
+            <p class="todo__paragraph">Deadline: {{task.task_deadline}}</p>
+        {% endif %}
+        {% if task.task_expand %}
+        <div class="todo__expand">
+            <p class="todo__details">{{task.task_details}} </p>
+        </div>
+        {% endif %}
+    <div class="todo__container">
+        <a class="todo_link" href="{% url 'todo:edit-task' task.task_slug %}"><button class="todo__button">Edit</button></a>
+        <a class="todo_link" href="{% url 'todo:task-operation' task.task_slug 'switch-done' %}"><button class="todo__button">{% if task.task_done %} Revert {% else %} Done {% endif %}</button></a>
+        <a class="todo_link" href="{% url 'todo:task-operation' task.task_slug 'delete' %}"><button class="todo__button">Delete</button></a>
+        <a class="todo_link" href="{% url 'todo:task-operation' task.task_slug 'switch-details' %}"><button class="todo__button">{% if task.task_expand %} Hide {% else %} Expand {% endif %}</button></a>
+    </div>
+</li>
